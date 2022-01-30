@@ -1,0 +1,16 @@
+FROM python:3.8
+RUN pip install --upgrade wheel setuptools
+
+WORKDIR /opt/ner-wave-app
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r ./requirements.txt
+
+COPY ./ner.py .
+COPY ./wait-for-it.sh .
+
+RUN chmod +x ./wait-for-it.sh
+
+EXPOSE 8000
+
+ENTRYPOINT ["./wait-for-it.sh", "waved:10101", "--", "uvicorn", "--port", "8000", "--host", "0.0.0.0", "ner:main"]

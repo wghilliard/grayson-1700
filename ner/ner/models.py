@@ -8,6 +8,7 @@ class NERRequest(BaseModel):
 
 
 class Entity(BaseModel):
+    id: int
     text: str
     label: str
 

@@ -18,8 +18,11 @@ class Processor:
         doc = self.nlp(request.text)
 
         result = NERResult(
-            entities=[Entity(text=ent.text, label=ent.label_) for ent in doc.ents],
-            html=displacy.render(doc, style="dep", minify=True, page=True),
+            entities=[
+                Entity(id=ent.ent_id, text=ent.text, label=ent.label_)
+                for ent in doc.ents
+            ],
+            html=displacy.render(doc, style="ent", minify=True, page=True),
         )
 
         return result

@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  waved:
+    image: wghilliard/waved:latest
+    ports:
+      - "10101:10101"
+
+  ner-wave-app:
+    image: wghilliard/ner-wave-app:latest
+    ports:
+      - "8000:8000"
+    environment:
+      H2O_WAVE_ADDRESS: "http://waved:10101"
+      H2O_WAVE_APP_ADDRESS: "http://ner-wave-app:8000"
+      NER_HOST: "ner:8080"
+    depends_on:
+      - waved
+      - ner
+
+  ner:
+    image: wghilliard/ner:latest
+    ports:
+      - "8080:8080"
