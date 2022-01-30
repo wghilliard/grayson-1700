@@ -1,12 +1,12 @@
 version: "3.9"
 services:
   waved:
-    image: wghilliard/waved:latest
+    image: wghilliard/grayson-1700:waved.latest
     ports:
       - "10101:10101"
 
   ner-wave-app:
-    image: wghilliard/ner-wave-app:latest
+    image: wghilliard/grayson-1700:ner-wave-app.latest
     ports:
       - "8000:8000"
     environment:
@@ -18,6 +18,6 @@ services:
       - ner
 
   ner:
-    image: wghilliard/ner:latest
+    image: wghilliard/grayson-1700:ner.latest
     ports:
       - "8080:8080"

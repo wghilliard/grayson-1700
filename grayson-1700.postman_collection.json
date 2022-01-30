@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "1cb052d6-6fa3-4f9e-9b62-4822ab6ca3ff",
+		"name": "grayson-1700",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get named entities",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "apple example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\":\"Apple is looking at buying U.K. startup for $1 billion\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ner"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Jan 2022 01:46:52 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "1480"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"entities\": [\n        {\n            \"id\": 0,\n            \"text\": \"Apple\",\n            \"label\": \"ORG\"\n        },\n        {\n            \"id\": 0,\n            \"text\": \"U.K.\",\n            \"label\": \"GPE\"\n        },\n        {\n            \"id\": 0,\n            \"text\": \"$1 billion\",\n            \"label\": \"MONEY\"\n        }\n    ],\n    \"html\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><title>displaCy</title></head><body style=\\\"font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; padding: 4rem 2rem; direction: ltr\\\"><figure style=\\\"margin-bottom: 6rem\\\"><div class=\\\"entities\\\" style=\\\"line-height: 2.5; direction: ltr\\\"><mark class=\\\"entity\\\" style=\\\"background: #7aecec; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;\\\">Apple<span style=\\\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem\\\">ORG</span></mark> is looking at buying <mark class=\\\"entity\\\" style=\\\"background: #feca74; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;\\\">U.K.<span style=\\\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem\\\">GPE</span></mark> startup for <mark class=\\\"entity\\\" style=\\\"background: #e4e7d2; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;\\\">$1 billion<span style=\\\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem\\\">MONEY</span></mark></div></figure></body></html>\"\n}"
+				}
+			]
+		}
+	]
+}
