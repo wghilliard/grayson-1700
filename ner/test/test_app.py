@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
-from pytest import fixture
 from ner.app import app
+from pytest import fixture
 
 
 @fixture

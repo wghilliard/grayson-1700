@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 
-from .ner import Processor
 from .models import NERRequest, NERResult
+from .ner import Processor
 
 app = FastAPI()
 

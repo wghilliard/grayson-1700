@@ -3,6 +3,9 @@
 This project exists to demonstrate how a collection of microservices would work together in order to 
 present a GUI to a user such that they may view the results of a Named Entity Extraction process on some given text.
 
+[![license](https://img.shields.io/github/license/wghilliard/grayson-1700.svg)](https://github.com/wghilliard/grayson-1700/blob/master/LICENSE)
+
+
 ## Overview
 
 There are three components to this project:
@@ -68,6 +71,35 @@ Also included is a [Postman Collection](https://www.postman.com/) that can be us
 
 [grayson-1700.postman_collection.json](./grayson-1700.postman_collection.json)
 
+
+## Development
+
+### Setting up the env
+
+```bash
+cd $REPO_ROOT
+# create the conda environment
+conda create -n ner python=3.8
+conda activate
+
+# install the packages
+pip install --upgrade pip setuptools wheel
+pip install -e ./ner
+
+# download the spacy models
+python -m spacy download en_core_web_sm
+
+# install the dev-packages
+pip install -r ./ner/requirements-dev.txt
+```
+
+### Running the tests
+
+```bash
+cd $REPO_ROOT
+pytest ./ner/test
+```
+
 ### todos (unsorted)
 - integrate `precommit`
   - black
@@ -78,9 +110,10 @@ Also included is a [Postman Collection](https://www.postman.com/) that can be us
 - add errors to the UI
 - better secrets (replace built-in `waved` secrets)
 - more better docker networks
-- optimize image size
+- optimize docker image size
 - oauth / identity integration
 - ci / cd
+- more tests :smile:
 - k8s?
 
 ### Acknowledgements & Tools

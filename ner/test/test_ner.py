@@ -1,7 +1,9 @@
 from typing import NoReturn
+
 from pytest import fixture
-from ner.ner import Processor
+
 from ner import NERRequest as Request, NERResult as Result
+from ner.ner import Processor
 
 
 @fixture

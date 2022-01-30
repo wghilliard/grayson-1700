@@ -41,34 +41,53 @@ async def serve(q: Q):
     if q.args.submit:
         q.user.input_text = input_text
 
+        q.page.add(
+            "loading_bar",
+            ui.markdown_card(
+                box="6 1 6 6", content="loading...", title="hey there, just a moment..."
+            ),
+        )
+        await q.page.save()
+
         async with httpx.AsyncClient(timeout=10) as client:
             response = await client.post(
                 f"http://{NER_HOST}/ner", json={"text": input_text}
             )
 
-        html = response.json()["html"]
-        q.page["table_result"] = ui.form_card(
-            box="6 1 6 6",
-            items=[
-                ui.table(
-                    name="entities",
-                    columns=columns,
-                    rows=[
-                        ui.table_row(
-                            name=str(entity["id"]),
-                            cells=[entity["text"], entity["label"]],
-                        )
-                        for entity in response.json()["entities"]
-                    ],
-                    groupable=True,
-                    downloadable=True,
-                    resettable=True,
-                )
-            ],
-            title="Found Entities",
-        )
-        q.page["pretty_result"] = ui.frame_card(
-            box="1 7 10 12", title="Pretty Text", content=html
-        )
+        del q.page["loading_bar"]
+        if response.is_error:
+            q.page.add(
+                "error",
+                ui.markdown_card(
+                    box="6 1 6 6",
+                    content=f"{response}",
+                    title="uh oh, something went wrong",
+                ),
+            )
+        else:
+            html = response.json()["html"]
+            q.page["table_result"] = ui.form_card(
+                box="6 1 6 6",
+                items=[
+                    ui.table(
+                        name="entities",
+                        columns=columns,
+                        rows=[
+                            ui.table_row(
+                                name=str(entity["id"]),
+                                cells=[entity["text"], entity["label"]],
+                            )
+                            for entity in response.json()["entities"]
+                        ],
+                        groupable=True,
+                        downloadable=True,
+                        resettable=True,
+                    )
+                ],
+                title="Found Entities",
+            )
+            q.page["pretty_result"] = ui.frame_card(
+                box="1 7 10 12", title="Pretty Text", content=html
+            )
 
     await q.page.save()
