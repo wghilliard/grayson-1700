@@ -62,7 +62,7 @@ docker-compose down
 
 The GUI can be found at http://localhost:10101/ner , an example of the UI is shown below:
 
-<img src="./images/ner-wave-app-screenshot.png" height="800"/>
+<img src="./images/ner-wave-app-screenshot.png" width="1000"/>
 
 Also included is a [Postman Collection](https://www.postman.com/) that can be used to interact with the Named Entity Extraction service directly, located at http://localhost:8080/ner .
 
